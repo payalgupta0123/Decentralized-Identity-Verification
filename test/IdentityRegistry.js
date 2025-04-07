@@ -12,7 +12,9 @@ describe("IdentityRegistry", function () {
   it("should register a new identity", async function () {
     const [owner] = await ethers.getSigners();
 
-    await identityRegistry.registerIdentity("Alice", "1234");
+    // 👇 Pass the address explicitly
+    await identityRegistry.registerIdentity(owner.address, "Alice", "1234");
+
     const identity = await identityRegistry.getIdentity(owner.address);
 
     expect(identity.name).to.equal("Alice");
