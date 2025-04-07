@@ -1,0 +1,16 @@
+{
+  "name": "decentralized-identity-verification",
+  "version": "1.0.0",
+  "description": "A secure, privacy-preserving identity verification system for financial services built on blockchain technology. This system enables financial institutions to verify customer identities while maintaining data sovereignty and regulatory compliance.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.19"
+  }
+}
