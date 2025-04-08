@@ -13,7 +13,7 @@ describe("IdentityRegistry", function () {
     const [owner] = await ethers.getSigners();
 
     // 👇 Pass the address explicitly
-    await identityRegistry.registerIdentity(owner.address, "Alice", "1234");
+    await identityRegistry.registerIdentity("Alice", "1234");
 
     const identity = await identityRegistry.getIdentity(owner.address);
 
