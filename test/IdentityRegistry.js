@@ -1,4 +1,5 @@
-const { expect } = require("chai");
+import { expect } from "chai";
+import { ethers } from "hardhat";
 
 describe("IdentityRegistry", function () {
   let identityRegistry;
@@ -12,12 +13,14 @@ describe("IdentityRegistry", function () {
   it("should register a new identity", async function () {
     const [owner] = await ethers.getSigners();
 
-    // 👇 Pass the address explicitly
-    await identityRegistry.registerIdentity("Alice", "1234");
+    const identityHash = ethers.keccak256(ethers.toUtf8Bytes("Alice-1234"));
 
-    const identity = await identityRegistry.getIdentity(owner.address);
+    await identityRegistry.registerIdentity(owner.address, identityHash);
 
-    expect(identity.name).to.equal("Alice");
-    expect(identity.nationalId).to.equal("1234");
+    const [returnedHash, verifier, isVerified] = await identityRegistry.getIdentity(owner.address);
+
+    expect(returnedHash).to.equal(identityHash);
+    expect(verifier).to.equal(owner.address);
+    expect(isVerified).to.be.false;
   });
 });
